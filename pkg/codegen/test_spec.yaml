@@ -11,6 +11,53 @@ servers:
 
 paths:
   /test/{name}:
+    post:
+      operationId: TestPost
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+      description: |
+        Uploads a PDF that will be signed and embedded with the verifiable credential when it will be issued.
+        Can be used only for credentials in Draft state.
+        Maximal size of the PDF document is 50 MB.
+      security:
+        - accessToken: [ ]
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                pdf:
+                  type: string
+                  format: binary
+                signatureMetadata:
+                  $ref: "#/components/schemas/Test"
+                signatureImage:
+                  type: string
+                  format: binary
+            encoding:
+              pdf:
+                contentType: application/pdf
+              signatureImage:
+                contentType: image/png, image/jpeg
+      responses:
+        200:
+          description: Success
+          content:
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Test'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Test'
     get:
       tags:
         - test

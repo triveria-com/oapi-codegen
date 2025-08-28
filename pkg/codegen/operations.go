@@ -743,7 +743,7 @@ func GenerateBodyDefinitions(operationID string, bodyOrRef *openapi3.RequestBody
 		// type under #/components, we'll define a type for it, so
 		// that we have an easy to use type for marshaling.
 		if bodySchema.RefType == "" {
-			if contentType == "application/x-www-form-urlencoded" {
+			if contentType == "application/x-www-form-urlencoded" || contentType == "multipart/form-data" {
 				// Apply the appropriate structure tag if the request
 				// schema was defined under the operations' section.
 				for i := range bodySchema.Properties {
@@ -999,7 +999,7 @@ func GenerateFiberServer(t *template.Template, operations []OperationDefinition)
 // GenerateEchoServer generates all the go code for the ServerInterface as well as
 // all the wrapper functions around our handlers.
 func GenerateEchoServer(t *template.Template, operations []OperationDefinition) (string, error) {
-	return GenerateTemplates([]string{"echo/echo-interface.tmpl", "echo/echo-wrappers.tmpl", "echo/echo-register.tmpl"}, t, operations)
+	return GenerateTemplates([]string{"echo/echo-binder.tmpl", "echo/echo-interface.tmpl", "echo/echo-wrappers.tmpl", "echo/echo-register.tmpl"}, t, operations)
 }
 
 // GenerateGinServer generates all the go code for the ServerInterface as well as
