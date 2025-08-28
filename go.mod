@@ -1,4 +1,4 @@
-module github.com/oapi-codegen/oapi-codegen/v2
+module github.com/triveria-com/oapi-codegen/v2
 
 go 1.22
 
