@@ -11,7 +11,7 @@ import (
 
 	examplePetstoreClient "github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded"
 	examplePetstore "github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/echo/api"
-	"github.com/oapi-codegen/oapi-codegen/v2/pkg/codegen"
+	"github.com/triveria-com/oapi-codegen/v2/pkg/codegen"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/lint"
 )
